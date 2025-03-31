@@ -1,0 +1,1 @@
+ALTER TABLE cafe DROP menu_id;
