@@ -66,5 +66,10 @@ const controllers = {
 
 const indexRoutes = require('./routes/index');
 app.use('/api', indexRoutes(controllers));
+//swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swaggerConfig');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 module.exports=app;

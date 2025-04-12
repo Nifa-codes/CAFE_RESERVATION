@@ -1,4 +1,4 @@
-const generate=require('./securities/generators');
+const generate=require('../securities/generators');
 function reserveService(reserveRepository) {
     const addReservation = async function(reservationData) {
         try {
