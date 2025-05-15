@@ -1,0 +1,1 @@
+INSERT INTO tables (id, cafe_id, table_no, capacity, is_available) VALUES ($1, $2, $3, $4, $5)

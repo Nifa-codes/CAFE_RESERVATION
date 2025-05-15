@@ -1,0 +1,1 @@
+SELECT menu.*, cafe.name AS cafeName FROM menu JOIN cafe ON menu.cafe_id = cafe.id WHERE menu.cafe_id=$3 ORDER BY name ASC LIMIT $1 OFFSET $2

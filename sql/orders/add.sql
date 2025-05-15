@@ -1,0 +1,1 @@
+INSERT INTO orders (id, items, status, total_price) VALUES ($1, $2, $3, $4)

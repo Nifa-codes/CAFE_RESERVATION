@@ -1,0 +1,1 @@
+SELECT 1 FROM cafe WHERE contact_number = $1

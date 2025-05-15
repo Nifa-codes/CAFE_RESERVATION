@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM menu WHERE (name ILIKE $1 OR category ILIKE $1) AND cafe_id = $2

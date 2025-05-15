@@ -1,0 +1,1 @@
+DELETE FROM cafe WHERE id=$1

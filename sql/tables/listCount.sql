@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM tables WHERE cafe_id=$1

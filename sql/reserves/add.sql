@@ -1,0 +1,1 @@
+INSERT INTO reservation (id, users_id, cafe_id, tables_id, orders_id, reserve_time_id, reserve_date_id, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)

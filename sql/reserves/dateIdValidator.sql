@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT 1 FROM reserve_date WHERE id=$1)

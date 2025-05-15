@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT * FROM orders WHERE id=$1)

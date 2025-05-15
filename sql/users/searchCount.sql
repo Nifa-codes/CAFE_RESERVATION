@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM users WHERE LOWER (name) LIKE LOWER ($1) OR LOWER (email) LIKE LOWER ($1)

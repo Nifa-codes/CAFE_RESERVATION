@@ -1,0 +1,1 @@
+UPDATE users SET avatar_url = $1 WHERE id = $2

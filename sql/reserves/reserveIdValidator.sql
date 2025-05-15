@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT 1 FROM reservation WHERE id=$1)

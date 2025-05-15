@@ -1,0 +1,1 @@
+SELECT tables.*, cafe.name AS cafename FROM tables JOIN cafe ON tables.cafe_id=cafe.id WHERE cafe_id=$1 ORDER BY capacity ASC LIMIT $2 OFFSET $3

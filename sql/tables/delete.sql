@@ -1,0 +1,1 @@
+DELETE FROM tables WHERE id=$1

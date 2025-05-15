@@ -1,0 +1,1 @@
+INSERT INTO cafe (id, name, contact_number, address, oppening_hours) VALUES ($1, $2, $3, $4, $5)

@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM cafe WHERE name ILIKE $1

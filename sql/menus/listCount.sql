@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM menu WHERE cafe_id=$1
