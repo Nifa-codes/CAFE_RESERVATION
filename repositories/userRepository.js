@@ -4,38 +4,51 @@ const { fixNumber } = require("../utils/numberFix");
 const sql = require("../sql/sqlLoader");
 function userRepo(db) {
   const searchByEmail = async function (email) {
-    return db.oneOrNone("SELECT * FROM users WHERE LOWER(email)=LOWER($1)", [
-      email,
-    ]);
+    console.log(sql.users.searchByEmail);
+    return db.oneOrNone(sql.users.searchByEmail, [email]);
   };
   const getUserById = async function (id) {
-    return db.oneOrNone("SELECT 1 FROM users WHERE id=$1", [id]);
+    return db.oneOrNone(sql.users.getById, [id]);
   };
   const addUser = async function (user) {
-    let phone = user.phone.slice(1);
-    phone = `098${phone}`;
-    return db.none(
-      "INSERT INTO users (id, name, email, password, role_id, phone) VALUES ($1, $2, $3, $4, $5, $6)",
-      [user.id, user.name, user.email, user.password, user.role_id, phone]
-    );
-  };
-  const updateUserAvatar = async function (id, avatar) {
-    return db.none("UPDATE users SET avatar_url = $1 WHERE id = $2", [
-      avatar,
-      id,
+    console.log(sql.users.add);
+    return db.none(sql.users.add, [
+      user.id,
+      user.name,
+      user.email,
+      user.password,
+      user.role_id,
+      fixNumber(user.phone),
     ]);
   };
+  const updateUserAvatar = async function (id, avatar) {
+    return db.none(sql.users.updateUserAvatar, [avatar, id]);
+  };
   const editUser = async function (id, userData) {
-    //my algorithm for dynamic update
-    let i = 2;
-    let valuesQ = [];
-    valuesQ[0] = id;
-    let query = "UPDATE users SET id=$1";
-    if (userData.name) {
-      let nameQ = `,name=$${i}`;
-      valuesQ[i - 1] = userData.name;
-      i++;
-      query = query + nameQ;
+    const fields = {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      phone: userData.phone ? fixNumber(userData.phone) : undefined,
+    };
+
+    let i = 1;
+    let setClauses = [];
+    let values = [];
+
+    for (const [column, value] of Object.entries(fields)) {
+      if (value !== undefined && value !== null) {
+        if (column === "password") {
+          // hash password before adding
+          const hashed = await generate.hashPassword(value);
+          setClauses.push(`${column}=$${i}`);
+          values.push(hashed);
+        } else {
+          setClauses.push(`${column}=$${i}`);
+          values.push(value);
+        }
+        i++;
+      }
     }
 
     if (setClauses.length === 0) {
